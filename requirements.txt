@@ -1,0 +1,12 @@
+# Graphics and data visualization
+plotly~=5.3.1
+
+pip~=21.2.4
+Brotli~=1.0.9
+py~=1.10.0
+setuptools~=58.1.0
+dash~=2.0.0
+dash-core-components==2.0.0
+dash-html-components==2.0.0
+dash-table==5.0.0
+

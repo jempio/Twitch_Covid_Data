@@ -1,0 +1,75 @@
+\documentclass[fontsize=11pt]{article}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{indentfirst}
+
+\title{CSC110 Project Write-Up: The Impact of Loneliness on Twitch Consumption during the Pandemic }
+\author{Winston Chieng, Justin Li, Derrick Cho, Sabarish Gnanamoorthy}
+\date{December 13th, 2021}
+
+\begin{document}
+\maketitle
+
+\section*{Problem Description and Research Question}
+
+To recap from our initial introduction of our project in our proposal, after a majority of the world was practically shut down because of the widespread coronavirus pandemic in 2020, we wanted to see what effects this had on digital dependency around the world. COVID initiated a mass quarantine all around the world eliminating many in-person activities, and with the suspension of in-person activities, social isolation began to see a rise. An article published by MedicalNewsToday exhibited studies on the mental health related symptoms from the beginning of the pandemic to around mid November 2020. One of these studies, done at the University of Miami found that “roughly 65\% of study participants reported increased feelings of loneliness since the declaration of COVID as a pandemic”. People were now lonelier than ever. However, to combat the feeling of loneliness, consumption of digital media and content began to increase. The specific form of entertainment our research topic will be looking at is the live streaming platform Twitch. As a consequence of the pandemic, people were forced to quarantine leading to increase of social isolation and a greater vulnerability to loneliness. Our question then is to determine \textbf{how has the pandemics impact on increased loneliness increased or decreased the consumption of content on Twitch as a coping mechanism?} After reviewing and analyzing our feedback, as a group, we decided to stick with our plan and continued with what we had in mind. Furthermore, in the beginning we wanted to more so investigate associations of loneliness due to COVID and consumption of Twitch. However, from TA feedback, we ended up associating COVID growth rates to Twitch growth rates instead. In general, the motivation behind this idea stemmed from a similarity in terms of how we all felt during the times of quarantine and the beginnings of the pandemic. The group members found that many of their day to day social interactions were mainly online and Twitch was no exception. The difference between Twitch and standard forms media (Television shows, films) is that the content is live. Viewers can talk to the streamer on the other side and get a response back. Furthermore, these interactions are sometimes what builds ‘content’ for streamers and regular viewers enjoy coming back to watch. This type of media is perfect for people to interact with others more and is especially useful for times of loneliness. For some of the group members, we saw benefits in using Twitch as a way to feel part of a sort of ‘community’ during the times of the pandemic. In the end, we continue to find Twitch a fascinating form of digital media and are interested to see how it will grow in the future.
+
+
+\section*{Dataset Description}
+
+The two csv files on Twitch are created by Ran Kirsh,  for twitch\_game\_data we used the information on the game name, average viewers, and year and month of the stats, for twitch\_global we used the information on the year and month of the stats, streams, and average viewers. These two datasets are released under the Apache 2.0 open source license. The covid\_by\_year csv on covid data was created by Joseph Assaker and released under the CC0 Public Domain dedication, and we used the date, country, and daily new cases from that dataset.
+
+
+\section*{Computational Plan}
+
+In our project, we created a dataclass called TwitchDataGame that has attributes for all the columns in the twitch\_game\_data csv file and we stored the information from the dataset into TwitchDataGame objects. For this dataclass, we created a function load\_data\_game that filters through the dataset and returns a list of TwitchDataGame objects only for one game within input years. Similar processes were done for the TwitchDataGlobal dataclass which transforms the twitch\_global csv, and the CovidData dataclass which transforms the covid\_by\_year csv. For the Covid data we created an algorithm to help us get the total cases in a month for a country, by splitting the date string into year month and day, and adding to a local variable until it reaches the last day of the month, in which the value is then returned.
+Our program shows our results on various graphs, showing the viewership on Twitch over the months, streams being broadcasted, Covid cases over time, and also graphs showing the growth of different games during the pandemic. Our dropdown menu allows the user to look at different years of the data, the Covid situation of multiple countries, and the viewership of various games.
+Utilizing Dash, we were able to create an interactive dashboard, allowing us to illustrate the trends in viewership, and streams while comparing them to the growth of the pandemic. With Dash core components, we used .graph( ) and plotly.express.line( ) to create our graph, with a line connecting all the points together. With .Dropdown( ) we were able to give the user the option to change the information shown on the graph, allowing them to compare different sets of data together. Additionally, Dash made it easy for us to design the dashboard with its built in html components.
+
+\newline\newline
+
+\section*{Instructions}
+
+Datasets for the Twitch csvs can be found at:
+
+https://www.kaggle.com/rankirsh/visualising-twitch/script.
+
+Dataset for the Covid csv can be found at:
+
+https://www.kaggle.com/josephassaker/covid19-global-dataset.
+
+Csv’s should be saved in the same folder as the python files, no subfolders needed.
+
+After running the main.py, click the local host link, and the dashboard should look like the attached screenshots.
+
+Click the drop down menu on the top left of some of the graphs, and select the data you would like to see.
+
+\section*{Changes}
+
+There were very few changes from our original proposal to what we ended up demonstrating in our final project. The main changes were additions to our original idea from TA feedback. From our feedback we collected a new dataset regarding COVID death and cases tallies throughout the beginning of the pandemic to present day. Additionally, an idea was brought up in the feedback to compare and see whether or not COVID “increased the consumption of any specific [game or] category of games”. We decided to implement this and analyzed the results.  Finally, there was one thing that we could not end up executing in our final project, which was plotting and predicting future game data metrics. This was due to a lack of data in the present day. We were unable to obtain data relevant in predicting possible game and global twitch trends as the closest our data got to present time was only February, 2021.
+
+\section*{Discussion}
+
+To recall, our research question was to determine how has the pandemics impact on increased loneliness increased or decreased the consumption of content on Twitch as a coping mechanism? Collectively our group can agree that there is not a for sure answer on whether or not COVID had definitively increased or decreased Twitch consumption, however our data leans toward the “increased consumption” side. There are a couple reasons for this implication. First due to the results of the average viewers graph in 2020. In comparison to all the previous years (with the possible exception of 2018), there was not obvious growth. In fact we can determine that before 2020, the average viewership on Twitch as a whole fluctuates from month to month. However in 2020, we can see a clear and also massive jump in average viewership from months February to April. Evidently this marks the beginning of COVID as a widespread pandemic. In addition to an increase in global viewership as a whole, we saw there was also growth in certain game categories as well. For example, we picked three of the most popular shooter games in 2020, Counter-Strike: Global Offensive, VALORANT, and Call of Duty: Black Ops III. From our data we can see that in all three of these shooters there was a common pattern shared between all three of them. In the months from March-April, there was some sort of spike in viewership in all three games. However, with all of this being said there is still a reason that we cannot fully conclude that COVID being a widespread pandemic around the world was fully correlated with Twitch consumption as a whole. This is the data we found concerning specific countries and their specific COVID rates. We found that Germany had a very good response to the pandemic and contained their cases to be relatively low up until around October 2020. With Germany being the 2nd most active country on Twitch in six months leading up to June of 2021, this shows that even though COVID was not a prominent issue in Germany up until October 2020, we have already seen massive growths in Twitch viewership as early as March 2020. As for some limitations we ran into during our coding process, we found that we had to drop our idea of trying to predict future growth trends on Twitch. This was due to a lack of information given by our datasets; the most recent data only dated as late as February 2021. As for libraries, Dash was in general not too hard to grasp and we did not run into too many major problems with it. Finally, in the future we collectively thought of incorporating a possible way to track specific streamer metrics and compare their growths throughout the pandemic. To conclude, we could not come up with a definitive answer on whether or not the pandemic causing social isolation was directly correlated with the increase of Twitch consumption. However, through metrics such as average viewership on Twitch as a whole and through specific games and category of games, there was a demonstration of a very possible correlation between COVID and the growth of Twitch.
+
+
+\section*{References}
+
+\begin{hangparas}
+Berman, R. (2020, November 25). Covid-19 has produced 'alarming' increase in loneliness. Medical News Today. Retrieved November 5, 2021, from https://www.medicalnewstoday.com/articles/alarming-covid-19-study-shows-80-of-respondents-report-significant-symptoms-of-depression#How-the-team-conducted-the-study.
+\end{hangparas} \newline
+
+\begin{hangparas}
+Tomar, A. (2021, October 6). Dash for beginners: Create interactive python dashboards. Medium. Retrieved November 6, 2021, from https://towardsdatascience.com/dash-for-beginners-create-interactive-python-dashboards-338bfcb6ffa4.
+\end{hangparas}\newline
+
+\begin{hangparas}
+Ran Kirsh. (2021, April 9). Visualising Twitch, Version 7. Retrieved November 5, 2021, from https://www.kaggle.com\newline/rankirsh/visualising-twitch/script.
+\end{hangparas}
+
+\begin{hangparas}
+Assaker, Joseph. “Covid-19 Global Dataset.” Kaggle, 3 Dec. 2021, https://www.kaggle.com/josephassaker/covid19-global-dataset.
+\end{hangparas}
+
+\end{document}
